@@ -15,21 +15,21 @@ export const fetchSearchedMovies = async newQuery => {
 
   return await response.data.results;
 };
-export const getMovieById = async movieId => {
+export const fetchMovieById = async movieId => {
   const response = await axios.get(
     `movie/${movieId}?api_key=${API_KEY}&language=en-US`
   );
 
   return await response.data;
 };
-export const getCastById = async movieId => {
+export const fetchCastById = async movieId => {
   const response = await axios.get(
     `movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`
   );
 
   return await response.data;
 };
-export const getReviewsById = async movieId => {
+export const fetchReviewsById = async movieId => {
   const response = await axios.get(
     `movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US`
   );

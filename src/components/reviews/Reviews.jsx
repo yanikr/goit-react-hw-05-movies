@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getReviewsById } from './Api';
+import { fetchReviewsById } from '../Api';
+import { ReviewsList } from './Reviews.styled';
 export const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState('');
   useEffect(() => {
-    getReviewsById(movieId)
+    fetchReviewsById(movieId)
       .then(results => setReviews(results))
       .catch(error => console.log(error.message));
   }, [movieId]);
@@ -13,15 +14,16 @@ export const Reviews = () => {
   return (
     <>
       {reviews && (
-        <ul>
+        <ReviewsList>
           {reviews.results.map(review => (
             <li key={review.id}>
               <h2>{review.author}</h2>
+
               <p>{review.created_at}</p>
               <p>{review.content}</p>
             </li>
           ))}
-        </ul>
+        </ReviewsList>
       )}
     </>
   );

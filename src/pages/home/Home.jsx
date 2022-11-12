@@ -1,11 +1,12 @@
 import { fetchTrendingMovies } from '../../components/Api';
 import { useState, useEffect } from 'react';
-// import { MovieLink } from './Home.styled';
-import { MoviesList } from './../../components/MoviesList';
+
+import { MoviesList } from '../../components/moviesList/MoviesList';
+import { useLocation } from 'react-router-dom';
 
 export const Home = () => {
   const [moviesArray, setMoviesArray] = useState([]);
-
+  const location = useLocation();
   useEffect(() => {
     async function fetchMovies() {
       try {
@@ -19,9 +20,10 @@ export const Home = () => {
     fetchMovies();
   }, []);
   return (
-    <main>
-      <MoviesList movies={moviesArray} />
-      <div>Home Page</div>
-    </main>
+    <>
+      <main>
+        <MoviesList movies={moviesArray} state={location} />
+      </main>
+    </>
   );
 };

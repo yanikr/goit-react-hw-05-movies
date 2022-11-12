@@ -1,25 +1,29 @@
-import { MovieDetails } from './../components/MovieDetails';
-import { useParams } from 'react-router-dom';
-import { getMovieById } from './../components/Api';
+import { MovieDetails } from '../../components/movieDetails/MovieDetails';
+import { useParams, useLocation } from 'react-router-dom';
+import { fetchMovieById } from '../../components/Api';
 import { Outlet } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Link } from './../components/App.styled';
+import { Link } from '../../components/App.styled';
+import { GoBackLink } from './../../components/goBackLink/GoBackLink';
 
 export const MovieDetailsPage = () => {
   const [movie, setMovie] = useState('');
   const { movieId } = useParams();
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/movies';
 
   // useEffect(() => {
   //   getMovieById(id);
   // }, [id]);
   useEffect(() => {
-    getMovieById(movieId)
+    fetchMovieById(movieId)
       .then(results => setMovie(results))
       .catch(error => console.log(error.message));
   }, [movieId]);
   console.log(movie);
   return (
     <>
+      <GoBackLink to={backLinkHref}>Back to movies</GoBackLink>
       <MovieDetails movie={movie} />
       <Link to="cast"> Read about cast</Link>
       <Link to="reviews"> Check Reviews</Link>
