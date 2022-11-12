@@ -10,7 +10,7 @@ export const Reviews = () => {
       .then(results => setReviews(results))
       .catch(error => console.log(error.message));
   }, [movieId]);
-  console.log(reviews);
+
   return (
     <>
       {reviews && (

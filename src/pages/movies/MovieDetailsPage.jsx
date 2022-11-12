@@ -20,7 +20,7 @@ export const MovieDetailsPage = () => {
       .then(results => setMovie(results))
       .catch(error => console.log(error.message));
   }, [movieId]);
-  console.log(movie);
+
   return (
     <>
       <GoBackLink to={backLinkHref}>Back to movies</GoBackLink>

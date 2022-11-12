@@ -11,7 +11,6 @@ export const Cast = () => {
       .then(results => setCast(results))
       .catch(error => console.log(error.message));
   }, [movieId]);
-  console.log(cast);
   return (
     <>
       {cast && (
