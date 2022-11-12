@@ -7,3 +7,9 @@ export const MoviesListGrid = styled.ul`
   margin-right: auto;
   justify-content: center;
 `;
+
+export const MovieTitle = styled.p`
+  text-align: center;
+  color: brown;
+  text-decoration: none;
+`;

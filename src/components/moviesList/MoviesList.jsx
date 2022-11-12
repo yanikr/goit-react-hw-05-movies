@@ -1,5 +1,5 @@
 import { MovieLink } from '../../pages/home/Home.styled';
-import { MoviesListGrid } from './MovieList.styled';
+import { MoviesListGrid, MovieTitle } from './MovieList.styled';
 import { useLocation } from 'react-router-dom';
 
 export const MoviesList = ({ movies }) => {
@@ -12,9 +12,10 @@ export const MoviesList = ({ movies }) => {
             <img
               src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
               alt={title}
+              width="500px"
+              height="710px"
             />
-            <p>{title}</p>
-            <p>{release_date}</p>
+            <MovieTitle>{title}</MovieTitle>
           </MovieLink>
         </li>
       ))}
