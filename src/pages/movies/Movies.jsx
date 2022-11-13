@@ -8,7 +8,7 @@ import {
   SearchMovieInput,
 } from './Movies.styled';
 
-export const Movies = () => {
+export default function Movies() {
   const [searchQuery, setSearchQuery] = useState('');
   const [movies, setMovies] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -55,4 +55,4 @@ export const Movies = () => {
       {movies && <MoviesList movies={movies} />}
     </>
   );
-};
+}

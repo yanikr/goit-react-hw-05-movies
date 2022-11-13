@@ -2,19 +2,16 @@ import { MovieDetails } from '../../components/movieDetails/MovieDetails';
 import { useParams, useLocation } from 'react-router-dom';
 import { fetchMovieById } from '../../components/Api';
 import { Outlet } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { Link } from '../../components/App.styled';
 import { GoBackLink } from './../../components/goBackLink/GoBackLink';
+import { Loader } from './../../components/loader/Loader';
 
-export const MovieDetailsPage = () => {
+export default function MovieDetailsPage() {
   const [movie, setMovie] = useState('');
   const { movieId } = useParams();
-  const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/movies';
+  const location = useLocation().state?.from ?? '/movies';
 
-  // useEffect(() => {
-  //   getMovieById(id);
-  // }, [id]);
   useEffect(() => {
     fetchMovieById(movieId)
       .then(results => setMovie(results))
@@ -23,11 +20,18 @@ export const MovieDetailsPage = () => {
 
   return (
     <>
-      <GoBackLink to={backLinkHref}>Back to movies</GoBackLink>
+      <GoBackLink to={location}>Back to movies</GoBackLink>
       <MovieDetails movie={movie} />
-      <Link to="cast"> Read about cast</Link>
-      <Link to="reviews"> Check Reviews</Link>
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Link to="cast" state={{ from: location }}>
+          Read about cast
+        </Link>
+        <Link to="reviews" state={{ from: location }}>
+          Check Reviews
+        </Link>
+
+        <Outlet />
+      </Suspense>
     </>
   );
-};
+}

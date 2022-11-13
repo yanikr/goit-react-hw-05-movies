@@ -6,7 +6,7 @@ export const MoviesList = ({ movies }) => {
   const location = useLocation();
   return (
     <MoviesListGrid>
-      {movies.map(({ id, poster_path, title, release_date }) => (
+      {movies.map(({ id, poster_path, title }) => (
         <li key={id}>
           <MovieLink to={`/movies/${id}`} state={{ from: location }}>
             <img

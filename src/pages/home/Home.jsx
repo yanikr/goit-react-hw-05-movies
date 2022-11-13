@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { MoviesList } from '../../components/moviesList/MoviesList';
 import { useLocation } from 'react-router-dom';
 
-export const Home = () => {
+export default function Home() {
   const [moviesArray, setMoviesArray] = useState([]);
   const location = useLocation();
   useEffect(() => {
@@ -26,4 +26,4 @@ export const Home = () => {
       </main>
     </>
   );
-};
+}
